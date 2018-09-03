@@ -6,11 +6,30 @@
    - Validate necessary functions are available
  - Create simple example layer
  - Validate simple example layer
+ - Lit review for sine-cosine decomp
  - Outline timestamp layer
  - Create timestamp layer
  
+## Keras backend
 
+ - Reviewing [keras backend](https://keras.io/backend/)
+ - Support for tensorflow (google), theano (university of montreal) and cntk (microsoft)
+ 
+### [New code](https://keras.io/backend/#using-the-abstract-keras-backend-to-write-new-code)
 
+ - Input placeholder example
+ - Variable example
+ - Initializing various matrices
+ - Math operations, argmax, log
+ - [Sine and cosine](https://keras.io/backend/#cos)
+ - losses
+ - Activation functions
+ - Random variables
+ 
+## Simple example layer
+
+Will re-create [dense layer](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L762) 
+ 
 
 # 2018-08-20
 
