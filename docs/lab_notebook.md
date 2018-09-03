@@ -1,3 +1,17 @@
+# 2018-09-03
+
+## Backlog
+
+ - Review keras backend
+   - Validate necessary functions are available
+ - Create simple example layer
+ - Validate simple example layer
+ - Outline timestamp layer
+ - Create timestamp layer
+ 
+
+
+
 # 2018-08-20
 
 ## Keras layers
