@@ -28,8 +28,12 @@
  
 ## Simple example layer
 
-Will re-create [dense layer](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L762) 
- 
+Will re-create [dense layer](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L762)
+
+ - self.add_weight: Add learnable weights (e.g. TF variables)
+   - Requires some initializer
+ - InputSpec: Expected input shape. Can check minimum number of dimensions, as well as requirements along a specific axis 
+ - We never explicitly update the kernel / bias. That seems to happen elsewhere
 
 # 2018-08-20
 
@@ -44,3 +48,4 @@ Will re-create [dense layer](https://github.com/keras-team/keras/blob/master/ker
 ## Examples
  - Antirectifier: https://github.com/keras-team/keras/blob/master/examples/antirectifier.py
  - Can also use Lambda function: https://keras.io/layers/core/#lambda
+ - [spectrogram](https://github.com/sophiaray/kapre/blob/master/kapre/time_frequency.py), from Sophe
