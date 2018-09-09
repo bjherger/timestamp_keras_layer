@@ -49,3 +49,10 @@ Will re-create [dense layer](https://github.com/keras-team/keras/blob/master/ker
  - Antirectifier: https://github.com/keras-team/keras/blob/master/examples/antirectifier.py
  - Can also use Lambda function: https://keras.io/layers/core/#lambda
  - [spectrogram](https://github.com/sophiaray/kapre/blob/master/kapre/time_frequency.py), from Sophe
+ 
+# 2018-09-09
+
+## Lit review
+
+ - [cycles](https://www.le.ac.uk/users/dsgp1/COURSES/TSERIES/2CYCLES.PDF)
+ - [Stolwijk](https://jech.bmj.com/content/jech/53/4/235.full.pdf)
