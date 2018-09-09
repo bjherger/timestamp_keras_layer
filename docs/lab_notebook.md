@@ -67,3 +67,19 @@ Will re-create [dense layer](https://github.com/keras-team/keras/blob/master/ker
    - Can use nyquist frequency to lower bound for frequencies 
  
 ### [Stolwijk](https://jech.bmj.com/content/jech/53/4/235.full.pdf)
+
+ - Use sine & cosine, because \theta (angle offset) is unknown
+ 
+### [Periodogram](https://onlinecourses.science.psu.edu/stat510/node/71/)
+
+ - Identity for transforming single cos to cosine and sine
+ - Evaluates all frequencies from 1 to n/2, for n distinct time points, of time step t
+ 
+### [tamu](https://www.stat.tamu.edu/~jnewton/stat626/topics/topics/topic4.pdf)
+
+ - Time series can be broken down into constituent frequencies + \bar y
+ - Plot (something proportional to amplitude) vs frequency
+
+## Implementing
+
+ - Writing rough interface
