@@ -56,3 +56,14 @@ Will re-create [dense layer](https://github.com/keras-team/keras/blob/master/ker
 
  - [cycles](https://www.le.ac.uk/users/dsgp1/COURSES/TSERIES/2CYCLES.PDF)
  - [Stolwijk](https://jech.bmj.com/content/jech/53/4/235.full.pdf)
+ - [Periodogram](https://onlinecourses.science.psu.edu/stat510/node/71/)
+ - [tamu](https://www.stat.tamu.edu/~jnewton/stat626/topics/topics/topic4.pdf)
+ 
+### [cycles](https://www.le.ac.uk/users/dsgp1/COURSES/TSERIES/2CYCLES.PDF)
+
+ - Intro to trig functions
+ - Fourier Decomposition of time series: Sum over multiple frequencies
+   - Can estimate using OLS
+   - Can use nyquist frequency to lower bound for frequencies 
+ 
+### [Stolwijk](https://jech.bmj.com/content/jech/53/4/235.full.pdf)
