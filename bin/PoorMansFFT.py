@@ -1,11 +1,16 @@
 from keras.engine import Layer
 
 
-class Dense(Layer):
-    def __init__(self, initial_frequencies):
-        # TODO Initialize super
+class PoorMansFFT(Layer):
+    def __init__(self, initial_frequencies, **kwargs):
+        # Initialize super
+        super(PoorMansFFT, self).__init__(**kwargs)
 
-        # TODO Initialize init variables
+        # Initialize init variables
+        self.initial_frequencies = initial_frequencies
+
+        # Convert initial frequencies to duration in seconds
+        self.initial_frequencies_seconds = self._convert_frequencies(initial_frequencies)
 
         pass
 
@@ -36,3 +41,26 @@ class Dense(Layer):
 
     def _shape_checking(self, input_shape):
         pass
+
+    @staticmethod
+    def _convert_frequencies(initial_frequencies):
+
+        conversions = {
+            'minutely': 60,
+            'hourly': 3600,
+            'daily': 86400,
+            'weekly': 604800,
+            'monthly': 2628288,
+            'quarterly': 7883991,
+            'yearly': 31535965
+        }
+
+        # Check for unknown initial frequencies
+        for initial_frequency in initial_frequencies:
+            if initial_frequency not in conversions:
+                raise AssertionError('Unknown initial frequency: {}. Please choose from: {}'.format(initial_frequency,
+                                                                                                    conversions.keys()))
+
+        # TODO Convert initial frequencies to duration in seconds
+        initial_frequencies_seconds = list(map(lambda x: conversions[x], initial_frequencies))
+        return initial_frequencies_seconds
