@@ -16,6 +16,7 @@ class PoorMansFFT(Layer):
 
     def build(self, input_shape):
         # TODO Shape checking
+        self._check_input_shape(input_shape)
 
         # TODO Create kernel(s)
 
@@ -39,7 +40,8 @@ class PoorMansFFT(Layer):
         # TODO Update layer config w/ super's config
         pass
 
-    def _shape_checking(self, input_shape):
+    def _check_input_shape(self, input_shape):
+
         pass
 
     @staticmethod
