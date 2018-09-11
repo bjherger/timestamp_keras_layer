@@ -1,4 +1,6 @@
-from keras.engine import Layer
+from keras.engine import Layer, InputSpec
+
+import keras.backend as K
 
 
 class PoorMansFFT(Layer):
@@ -15,12 +17,17 @@ class PoorMansFFT(Layer):
         pass
 
     def build(self, input_shape):
-        # TODO Shape checking
+        # Shape checking
         self._check_input_shape(input_shape)
+        input_dim = input_shape[1]
 
-        # TODO Create kernel(s)
+        # Create kernel(s), based on self.add_weight
+        weight = K.variable(self.initial_frequencies_seconds, name='frequency_weights')
+        self._trainable_weights.append(weight)
+        self.kernel = weight
 
-        # TODO Create InputSpec
+        # Create InputSpec
+        self.input_spec = InputSpec(min_ndim=2, max_ndim=2, axes={1: input_dim})
         pass
 
     def call(self, inputs, **kwargs):
@@ -41,8 +48,12 @@ class PoorMansFFT(Layer):
         pass
 
     def _check_input_shape(self, input_shape):
+        # Check that input_shape is of correct length
+        assert len(input_shape) >= 2
 
-        pass
+        # Check that input_shape only has one value (e.g. shape `(None, 1)`
+        assert input_shape[1] == 1
+
 
     @staticmethod
     def _convert_frequencies(initial_frequencies):

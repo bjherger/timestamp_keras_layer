@@ -1,7 +1,7 @@
 import unittest
 
 import pandas
-from keras import Input, Model
+from keras import Input, Model, losses
 from keras.datasets import boston_housing
 from keras.layers import Dense
 
@@ -41,13 +41,14 @@ class TestPoorMansFFT(unittest.TestCase):
 
         # Create model
 
-        inputs = Input(shape=[1, ])
+        inputs = Input(shape=(1,))
+        x = inputs
         x = PoorMansFFT(initial_frequencies=['daily', 'monthly'])(inputs)
         x = Dense(32)(x)
         x = Dense(1)(x)
 
         model = Model(inputs=inputs, outputs=x)
-        model.compile(optimizer='Adam')
+        model.compile(optimizer='Adam', loss=losses.mean_squared_error)
 
         # Train model
         model.fit(X, y)
