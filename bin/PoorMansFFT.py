@@ -31,7 +31,8 @@ class PoorMansFFT(Layer):
         pass
 
     def call(self, inputs, **kwargs):
-        # TODO Transform inputs to scaled inputs
+        # Transform inputs to scaled inputs
+        # scaled_inputs = K.variable()
 
         # TODO Transform by applying sine cosine basis to scaled inputs
 

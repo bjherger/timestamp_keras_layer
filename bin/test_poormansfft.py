@@ -33,7 +33,8 @@ class TestPoorMansFFT(unittest.TestCase):
         obs = pandas.DataFrame(data={'date': ['2018-09-09', '2018-09-12', '2018-10-09'],
                                      'value': [0, 2, 30]})
 
-        obs['date_epoch'] = pandas.to_datetime(obs['date'], format='%Y-%d-%m')
+        obs['date'] = pandas.to_datetime(obs['date'], format='%Y-%m-%d')
+        obs['date_epoch'] = (obs['date'] - pandas.Timestamp("1970-01-01")) / pandas.Timedelta('1s')
 
         # Generate X,y
         X = obs['date_epoch'].values
