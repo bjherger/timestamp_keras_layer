@@ -25,7 +25,7 @@ def main():
     freq = [[day_len*30.4], [day_len*365.25/4],[day_len*365.25]]
     freq = (numpy.array(1) / freq) * 2 * numpy.pi
 
-    # TODO Multiply to create sine & cosine arguments
+    # Multiply to create sine & cosine arguments
 
     arguments = numpy.transpose(X * freq)
 
@@ -33,7 +33,7 @@ def main():
     print('arguments')
     print(arguments)
 
-    # TODO Apply sine and cosine functions to arguments
+    # Apply sine and cosine functions to arguments
     sin_values = numpy.sin(arguments)
     cos_values = numpy.cos(arguments)
 

@@ -29,6 +29,9 @@ class Dense(Layer):
         self.input_spec = InputSpec(min_ndim=2, axes={-1: input_dim})
 
     def call(self, inputs, **kwargs):
+        print(inputs.shape)
+        print(type(inputs.shape[0]))
+        print(inputs)
 
         output = K.dot(inputs, self.kernel)
 

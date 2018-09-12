@@ -1,0 +1,6 @@
+{
+  "test_poormansfft.py::TestPoorMansFFT::test_call": true,
+  "test_poormansfft.py::TestPoorMansFFT::test_convert_frequencies": true,
+  "test_poormansfft.py::TestPoorMansFFT::test_init": true,
+  "test_poormansfft.py::TestPoorMansFFT::test_integration": true
+}

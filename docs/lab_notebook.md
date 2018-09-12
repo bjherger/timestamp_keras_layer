@@ -83,3 +83,38 @@ Will re-create [dense layer](https://github.com/keras-team/keras/blob/master/ker
 ## Implementing
 
  - Writing rough interface
+ 
+# 2018-09-11
+
+## Numpy draft
+
+ - Writing draft of functionality in numpy, per Sophe's recommendation
+ - Draft working
+ 
+## Keras functionality
+
+Necessary functions
+
+ - Pi
+ - Inverse / X^{-1}
+ - sin / cosine
+ - Transpose
+ - Matrix multiplication
+ 
+Keras functions:
+
+ - Dot
+ - cos
+ - sin
+ - pow: Power for inverse
+ - get_value: Get's numpy equivalent
+ 
+It looks like it's all here!
+
+## Call
+
+ - Writing
+ - It looks like I can just multiply the vector by 2 * pi, rather than using K.ones
+ - Issue w/ input shape
+
+

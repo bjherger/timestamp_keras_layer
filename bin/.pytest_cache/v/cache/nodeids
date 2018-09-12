@@ -1,0 +1,6 @@
+[
+  "test_poormansfft.py::TestPoorMansFFT::test_build",
+  "test_poormansfft.py::TestPoorMansFFT::test_call",
+  "test_poormansfft.py::TestPoorMansFFT::test_convert_frequencies",
+  "test_poormansfft.py::TestPoorMansFFT::test_init"
+]

@@ -1,3 +1,4 @@
+import numpy
 from keras.engine import Layer, InputSpec
 
 import keras.backend as K
@@ -12,7 +13,7 @@ class PoorMansFFT(Layer):
         self.initial_frequencies = initial_frequencies
 
         # Convert initial frequencies to duration in seconds
-        self.initial_frequencies_seconds = self._convert_frequencies(initial_frequencies)
+        self.initial_omegas = self._convert_frequencies(initial_frequencies)
 
         pass
 
@@ -22,7 +23,7 @@ class PoorMansFFT(Layer):
         input_dim = input_shape[1]
 
         # Create kernel(s), based on self.add_weight
-        weight = K.variable(self.initial_frequencies_seconds, name='frequency_weights')
+        weight = K.variable(self.initial_omegas, name='initial_omegas')
         self._trainable_weights.append(weight)
         self.kernel = weight
 
@@ -31,10 +32,15 @@ class PoorMansFFT(Layer):
         pass
 
     def call(self, inputs, **kwargs):
-        # Transform inputs to scaled inputs
-        # scaled_inputs = K.variable()
 
-        # TODO Transform by applying sine cosine basis to scaled inputs
+        # Convert frequencies to trig scale coefficients
+        omegas = K.pow(self.kernel, -1) * 2 * numpy.pi
+        print(K.get_value(omegas))
+
+        # Convert inputs to trig arguments, by multiplyhing inputs by trig scale coefficients
+        arguments = K.dot(omegas, inputs)
+
+        # TODO Apply sin and cosine element wise
 
         pass
 
@@ -77,4 +83,6 @@ class PoorMansFFT(Layer):
 
         # TODO Convert initial frequencies to duration in seconds
         initial_frequencies_seconds = list(map(lambda x: conversions[x], initial_frequencies))
-        return initial_frequencies_seconds
+        initial_omegas = list(map(lambda x: (2 * numpy.pi) / x, initial_frequencies_seconds))
+        # initial_omegas = list(map(lambda x: [x], initial_omegas))
+        return initial_omegas

@@ -1,6 +1,10 @@
 import inspect
 import unittest
 
+from keras import Input, Model, losses
+from keras.datasets import cifar10
+from keras.layers import Flatten
+
 from bin import Dense
 
 
@@ -43,3 +47,15 @@ class TestDense(unittest.TestCase):
         expected_args.update(['name', 'trainable'])
 
         self.assertCountEqual(expected_args, layer.get_config().keys())
+
+    def test_integration(self):
+        (x_train, y_train), (x_test, y_test) = cifar10.load_data()
+
+        input = Input(shape=x_train.shape[1:])
+        x = input
+        x = Flatten()(x)
+        x = Dense.Dense(1, name='test')(x)
+
+        model = Model(inputs=input, outputs=x)
+        model.compile(optimizer='adam', loss=losses.mean_squared_error)
+        model.fit(x_train, y_train)

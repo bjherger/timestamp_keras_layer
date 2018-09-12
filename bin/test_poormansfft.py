@@ -2,8 +2,9 @@ import unittest
 
 import pandas
 from keras import Input, Model, losses
-from keras.datasets import boston_housing
 from keras.layers import Dense
+
+import keras.backend as K
 
 from bin.PoorMansFFT import PoorMansFFT
 
@@ -11,9 +12,9 @@ from bin.PoorMansFFT import PoorMansFFT
 class TestPoorMansFFT(unittest.TestCase):
 
     def test_convert_frequencies(self):
-        self.assertEqual([60], PoorMansFFT._convert_frequencies(['minutely']))
+        self.assertEqual([[0.10471975511965977]], PoorMansFFT._convert_frequencies(['minutely']))
 
-        self.assertEqual([60, 31535965], PoorMansFFT._convert_frequencies(['minutely', 'yearly']))
+        self.assertEqual([[0.10471975511965977], [1.9923872020975373e-07]], PoorMansFFT._convert_frequencies(['minutely', 'yearly']))
 
         self.assertRaises(AssertionError, PoorMansFFT._convert_frequencies, ['shapely'])
 
@@ -26,9 +27,29 @@ class TestPoorMansFFT(unittest.TestCase):
 
         # Test for init variables
         self.assertCountEqual(initial_frequencies, layer.initial_frequencies)
-        self.assertCountEqual([60, 31535965], layer.initial_frequencies_seconds)
+        self.assertCountEqual([[0.10471975511965977], [1.9923872020975373e-07]], layer.initial_omegas)
 
-    def test_integration(self):
+    def test_build(self):
+        initial_frequencies = ['minutely', 'yearly']
+        layer = PoorMansFFT(initial_frequencies)
+
+        layer.build(input_shape=(None, 1))
+        self.assertTrue(hasattr(layer, 'kernel'))
+        self.assertTrue(hasattr(layer, 'input_spec'))
+
+    def test_call(self):
+        initial_frequencies = ['minutely', 'yearly']
+        layer = PoorMansFFT(initial_frequencies)
+
+        layer.build(input_shape=(None, 1))
+
+        inputs = K.variable([[0], [7884000], [31536000]])
+
+        layer.call(inputs)
+
+
+
+    def integration(self):
         # Generate dataset
         obs = pandas.DataFrame(data={'date': ['2018-09-09', '2018-09-12', '2018-10-09'],
                                      'value': [0, 2, 30]})
